@@ -1,0 +1,56 @@
+{
+  "version": "1.0.0",
+  "scientific_root": "return_temperature_comparability",
+  "paper": "return_temperature_comparability",
+  "published": false,
+  "doi": null,
+  "figure_map": {
+    "2": 3,
+    "3": 4,
+    "4": 5
+  },
+  "new_main_figure": 2,
+  "scientific_values_and_model_caches_changed": false,
+  "raw_replay_requires_external_legal_inputs": true,
+  "supplementary_diagnostic_interface": {
+    "figures": [
+      "S1",
+      "S2"
+    ],
+    "providers": [
+      "PreDist",
+      "XAI4HEAT"
+    ],
+    "pages_per_figure": 2,
+    "width_mm": 178,
+    "height_mm": 185,
+    "minimum_main_label_pt": 8,
+    "duration_days": [
+      7,
+      14,
+      30,
+      60,
+      90
+    ],
+    "columns": [
+      "median sync",
+      "median async",
+      "heat_weighted sync",
+      "heat_weighted async"
+    ],
+    "source": "comparability/results/PAIR_SEASON_SUMMARY.csv",
+    "outputs": "comparability/diagnostics/",
+    "mapping_files": [
+      "diagnostics/DIAGNOSTIC_SOURCE_MAP.csv",
+      "diagnostics/DIAGNOSTIC_FREQUENCY_MAP.csv",
+      "diagnostics/DIAGNOSTIC_FACETS.csv"
+    ],
+    "source_rows": {
+      "PreDist": 41110,
+      "XAI4HEAT": 140
+    },
+    "preserved_zero_reference_error_rows": 160,
+    "excluded_undefined_ordering_design_rows": 320,
+    "exact_xai_rows_per_facet": 14
+  }
+}
