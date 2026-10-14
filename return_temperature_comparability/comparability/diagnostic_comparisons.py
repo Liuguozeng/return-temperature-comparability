@@ -173,7 +173,8 @@ def build(pairs, output, plt, save_figure):
                                 other = rows['async'+suffix].to_numpy()*factor
                                 for a, b, y in zip(raw[valid], other[valid], ref[valid]):
                                     ax.plot([a,b],[y,y], color='#C4CDD3', lw=.7, zorder=1)
-                            ax.set(xlim=(-.02*limit, limit*1.03), ylim=(0, reference_limit))
+                            ax.set(xlim=(-.02*limit, limit*1.03),
+                                   ylim=(-.04*reference_limit, reference_limit*1.04))
                     if row != 4:
                         ax.tick_params(labelbottom=False)
             ylabel = 'Empirical cumulative fraction' if view == 'ecdf' else (

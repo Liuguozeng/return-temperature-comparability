@@ -1,6 +1,7 @@
 'Offline unit tests and packaged-derived verification, not raw replay.'
 import argparse
 import contextlib
+import hashlib
 import json
 import os
 import socket
@@ -21,32 +22,46 @@ def deny_network(*args, **kwargs):
     raise RuntimeError('Offline validation: network access forbidden')
 
 
-def run(output):
+def run(output, dependencies=()):
+    dependencies = [Path(p).resolve(strict=True) for p in dependencies]
+    if any(not p.is_dir() for p in dependencies):
+        raise ValueError('Dependencies must be explicitly selected local runtime directories')
+    sys.path[:0] = [str(p) for p in dependencies]
     from portable_support import verify_hash_manifest
     output = Path(output).resolve()
-    if not output.is_relative_to(ROOT) or output == ROOT:
-        raise ValueError('Output must be under this extracted package')
+    if output == ROOT or ROOT.is_relative_to(output):
+        raise ValueError('Output must be a new directory, not the package or its ancestor')
     if output.exists():
         raise ValueError('Validation output must not already exist')
     output.mkdir(parents=True)
     os.chdir(ROOT)
     tempfile.tempdir = str(output)
+    sys.pycache_prefix = str(output / 'pycache')
     socket.socket.connect = deny_network
     socket.socket.connect_ex = deny_network
     socket.create_connection = deny_network
     socket.getaddrinfo = deny_network
     # Allow package files, the selected interpreter/dependencies, and OS resources.
     # Historical workspace paths are not permitted even if they happen to exist.
-    allowed = [ROOT, Path(sys.prefix).resolve(), Path(sys.base_prefix).resolve(),
+    allowed = [ROOT, output, *dependencies, Path(sys.prefix).resolve(), Path(sys.base_prefix).resolve(),
                Path(sys.executable).resolve().parent.parent,
                Path('/System'), Path('/Library'), Path('/usr'), Path('/private/etc'),
                Path('/var/db/timezone').resolve()]
+    # The figure tests share one helper with the package-root renderer.
+    helper = ROOT.parent / 'panel_geometry.py'
+    declarations = dict(line.split('  ', 1)[::-1] for line in (ROOT.parent / 'SHA256SUMS').read_text().splitlines())
+    if declarations.get('panel_geometry.py') != hashlib.sha256(helper.read_bytes()).hexdigest():
+        raise ValueError('Shared panel helper is missing or differs from the release')
 
     def audit(event, args):
         if event == 'open' and isinstance(args[0], (str, bytes, os.PathLike)):
             path = Path(os.fsdecode(args[0])).resolve()
+            mode, flags = args[1], args[2]
+            writing = (isinstance(mode, str) and any(c in mode for c in 'wax+')) or (isinstance(flags, int) and flags & (os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND))
+            if path == helper and not writing:
+                return
             if not any(path.is_relative_to(base) for base in allowed) and path != Path('/dev/null'):
-                raise RuntimeError('Offline validation: access outside package/runtime forbidden')
+                raise RuntimeError('Offline validation: access outside package/runtime forbidden: ' + str(path))
         if event in ('socket.connect', 'socket.getaddrinfo'):
             raise RuntimeError('Offline validation: network access forbidden')
 
@@ -80,5 +95,6 @@ def run(output):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--dependency', type=Path, action='append', default=[])
     args = parser.parse_args()
-    run(args.output)
+    run(args.output, args.dependency)

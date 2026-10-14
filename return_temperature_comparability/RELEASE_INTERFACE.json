@@ -1,9 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scientific_root": "return_temperature_comparability",
   "paper": "return_temperature_comparability",
-  "published": false,
-  "doi": null,
   "figure_map": {
     "2": 3,
     "3": 4,
@@ -21,7 +19,7 @@
       "PreDist",
       "XAI4HEAT"
     ],
-    "pages_per_figure": 2,
+    "pages_per_figure": 3,
     "width_mm": 178,
     "height_mm": 185,
     "minimum_main_label_pt": 8,
@@ -32,18 +30,12 @@
       60,
       90
     ],
-    "columns": [
-      "median sync",
-      "median async",
-      "heat_weighted sync",
-      "heat_weighted async"
-    ],
     "source": "comparability/results/PAIR_SEASON_SUMMARY.csv",
-    "outputs": "comparability/diagnostics/",
+    "outputs": "reproduce.py figures output",
     "mapping_files": [
-      "diagnostics/DIAGNOSTIC_SOURCE_MAP.csv",
-      "diagnostics/DIAGNOSTIC_FREQUENCY_MAP.csv",
-      "diagnostics/DIAGNOSTIC_FACETS.csv"
+      "DIAGNOSTIC_SOURCE_MAP.csv",
+      "DIAGNOSTIC_STRATUM_SUMMARIES.csv",
+      "DIAGNOSTIC_REFERENCE_STRATA.json"
     ],
     "source_rows": {
       "PreDist": 41110,
@@ -51,6 +43,11 @@
     },
     "preserved_zero_reference_error_rows": 160,
     "excluded_undefined_ordering_design_rows": 320,
-    "exact_xai_rows_per_facet": 14
+    "exact_xai_rows_per_facet": 14,
+    "page_roles": [
+      "PreDist empirical distributions",
+      "PreDist reference-contrast strata",
+      "XAI4HEAT exact paired values"
+    ]
   }
 }

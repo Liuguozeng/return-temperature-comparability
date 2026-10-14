@@ -3,7 +3,7 @@
 This directory contains paired campaign results, source/count maps and
 implementation for comparing temporal alignment designs. The package supports
 derived-result verification, original-source replay and figure rendering as
-separate operations. Release version 1.0.0 is prepared, not published.
+separate operations.
 
 ## Requirements
 
@@ -11,6 +11,9 @@ Python 3.12 with NumPy 2.3.5 and pandas 2.2.3 was used. A compatible local Pytho
 with NumPy and pandas is required for derived verification. The runtime guard
 uses the Unix resource and signal modules on macOS/Linux. Install rendering
 dependencies separately for the figure commands below.
+For dependencies installed in a separate local runtime directory, the offline
+command accepts `--dependency /path/to/runtime`; it otherwise uses the selected
+interpreter's installed packages.
 All relative commands below run from the extracted `comparability/` directory. Replace
 `python3` with the path to the local interpreter when necessary.
 
@@ -18,10 +21,11 @@ All relative commands below run from the extracted `comparability/` directory. R
 
 ```sh
 python3 -B -m unittest discover -s tests -v
-python3 -B offline_check.py --output validation
+python3 -B offline_check.py --output /absolute/new-validation
 ```
 
-`validation` must not exist. The second command disables network access and
+The validation directory must not exist. Choose a directory outside the package
+to keep generated checks separate from input files. The second command disables network access and
 blocks Python file access outside the extracted package, selected interpreter
 and operating-system resources. It verifies SHA256_MANIFEST.json, runs unit
 tests, and reconstructs all saved Cartesian error values, the daily-disjoint
@@ -88,11 +92,13 @@ receipts are recorded separately from numerical inputs.
 
 ## Current Manuscript Evidence Figure
 
-The visual-only renderer `render_comparability.py` uses the unchanged packaged source
-values. It writes main Figure 2, two-page comparison-error Figure S1,
-two-page strict-reversal Figure S2, four provider-specific PNG/PDF pages,
-and source/frequency/facet maps into an isolated output directory. The supplied diagnostics are
-included under `diagnostics/`. Python with the locked NumPy/pandas and
+The renderer `render_comparability.py` uses the packaged source values.
+It writes the main comparison figure and three pages each for Figures S1
+and S2: the PreDist empirical distribution, PreDist reference-contrast
+strata and exact XAI4HEAT pairs. Source-object and stratum maps accompany
+the six pages. The package-root `reproduce.py figures` command assigns
+the manuscript figure numbers. Earlier frequency maps in `diagnostics/`
+describe the same source objects in fixed grids. Python with NumPy/pandas and
 Matplotlib dependencies is required for this optional rendering layer.
 
 ```sh
@@ -109,7 +115,7 @@ Exact rendering dependencies are recorded in requirements-figures.txt. The selec
 
 Temporal alignment shapes return-temperature comparability between heating systems
 
-This package renders current main Figure 2 and the four-page SI diagnostics.
+This package renders current main Figure 2 and the six-page SI diagnostics.
 Stable input identities retain their original paths; display numbering is explicit
 in MANUSCRIPT_INTERFACE.json.
 
@@ -120,17 +126,19 @@ gives its current display numbering.
 
 The exact source basename is `PAIR_SEASON_SUMMARY.csv`; the similarly suffixed
 date-disjoint file is a separate estimand and is not a diagnostic input. Figure S1
-uses 0.5 degree Celsius error bins; Figure S2 uses 5 percentage-point reversal
-bins, both with 0.5 degree Celsius horizontal bins for PreDist. A single neutral
-blue-gray frequency scale within each metric reports natural `log(1+count)`,
-not probability density. All facets use common axes within provider/metric and
-include the full tails. Blue `#2879AD` and pink `#C97E9C` identify design headers.
-XAI4HEAT displays all 14 exact pair-season values per facet, without smoothing,
-jitter or translucent point overlap. Small symmetric axis padding prevents
-marker clipping without changing data. True zero-reference contrasts remain
-in S1; undefined reference orderings remain in the source map but are excluded
-from S2 with per-facet counts. Campaign ties and hierarchical rates are unchanged.
-The count/source maps describe dependent pair-season observations. Field
+uses comparison MAE; Figure S2 uses strict-reversal percentages. Each has
+an empirical-distribution page and a reference-contrast-stratum page for
+PreDist, followed by exact paired values for XAI4HEAT. Positive reference
+quartiles are defined from unique pair-seasons and stay fixed across durations
+and designs; boxes show medians, quartiles and complete ranges. Blue
+`#2879AD` and pink `#C97E9C` identify synchronous and asynchronous designs.
+XAI4HEAT displays all 14 exact pair-season values per endpoint and duration.
+Symmetric axis padding keeps low-reference markers clear of the axes without
+moving their scientific coordinates. Zero-reference contrasts remain in S1;
+undefined reference orderings are excluded from S2 and identified in the
+source map. Campaign ties retain their defined-order denominator. Earlier
+frequency maps use 0.5 degree Celsius reference/error bins and 5 percentage-point
+reversal bins. Source maps describe dependent pair-season observations. Field
 definitions are in `diagnostics/DATA_DICTIONARY.json`.
 
 ```sh

@@ -1,4 +1,4 @@
-# Attribution And Permission Status
+# Source Attribution
 
 PreDist v2: Cyriana Roelofs; Edison Bastidas Guevara; Thomas Hugo; Stefan
 Faulstich; Anna Cadenbach (nee Kallert). PreDist Dataset - Operational data of
@@ -17,17 +17,15 @@ Full legal code is preserved in licenses/CC-BY-4.0.txt. Provider metadata was
 checked on 2026-10-07; this is not the original archive download date. The exact
 download timestamp was not retained, as documented in SOURCE_PROVENANCE.json.
 
-Changes from original data: frozen active-record/hourly aggregation and valid
+Changes from original data: active-record/hourly aggregation and valid
 day selection; selection of only these two providers; shared-date seasonal and
-weekly campaign endpoint derivation; full Cartesian contrast/error arrays;
-daily-median disjoint-complement derivation; registered hierarchical summaries;
+campaign endpoint derivation; full Cartesian contrast/error arrays;
+daily-median disjoint-complement derivation; hierarchical summaries;
 node multiplicities and bootstrap estimates; XAI leave-one-system summaries.
 Derived data retain physical identifiers; they are not declared anonymized.
 These transformations do not imply endorsement by the original creators.
 
-Original raw archives are excluded. Upstream CC BY terms are retained, not
-replaced by a blanket package license. The author's analysis/reader code has
-no separately supplied blanket public redistribution license. Author approval
-for this local prepared export is not public-release or third-party-permission
-clearance. Final publication/permission review is PENDING, including attribution,
-derived-data/privacy obligations and code rights. No public upload is made.
+Original raw archives are obtained from the cited provider records. The
+authors' original analysis and reader code is available under the MIT license
+included at the package root. The upstream CC BY 4.0 terms apply to the
+corresponding source-derived material and are retained in the license records.
