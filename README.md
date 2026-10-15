@@ -5,7 +5,7 @@ Code and derived evidence for seasonal return-temperature records and paired hea
 ## Reproduce
 
 Clone this repository, then download `return_temperature_comparability_data.zip` from
-[release 1.0.2](https://github.com/Liuguozeng/return-temperature-comparability/releases/tag/v1.0.2) and extract it in the repository
+[release 1.0.3](https://github.com/Liuguozeng/return-temperature-comparability/releases/tag/v1.0.3) and extract it in the repository
 root. Its members complete the existing `return_temperature_comparability/` directory.
 
 ```bash
@@ -28,6 +28,6 @@ into the same empty directory; their disjoint members form one package root.
 
 Original analysis and plotting code is available under the MIT license.
 Source data, upstream material and derived data retain the terms documented in
-[`LICENSE_MATRIX.csv`](return_temperature_comparability/LICENSE_MATRIX.csv) and the package attribution
+`LICENSE_MATRIX.csv` in the data archive and the package attribution
 records. The MIT license does not replace those source-specific terms.
 Original source archives are obtained from the cited official records.

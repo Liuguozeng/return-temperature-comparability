@@ -115,7 +115,9 @@ Exact rendering dependencies are recorded in requirements-figures.txt. The selec
 
 Temporal alignment shapes return-temperature comparability between heating systems
 
-This package renders current main Figure 2 and the six-page SI diagnostics.
+The comparison renderer writes main Figure 2 and the six-page SI diagnostics.
+The package-root `reproduce.py figures` command also writes strict-reversal
+Figure 3 and the retained duration and reference-target figures.
 Stable input identities retain their original paths; display numbering is explicit
 in MANUSCRIPT_INTERFACE.json.
 

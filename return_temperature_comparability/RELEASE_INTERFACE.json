@@ -1,13 +1,15 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scientific_root": "return_temperature_comparability",
   "paper": "return_temperature_comparability",
   "figure_map": {
-    "2": 3,
+    "1": 1,
+    "2": "S3",
     "3": 4,
-    "4": 5
+    "4": 5,
+    "5": 2
   },
-  "new_main_figure": 2,
+  "new_main_figure": 3,
   "scientific_values_and_model_caches_changed": false,
   "raw_replay_requires_external_legal_inputs": true,
   "supplementary_diagnostic_interface": {
@@ -49,5 +51,16 @@
       "PreDist reference-contrast strata",
       "XAI4HEAT exact paired values"
     ]
-  }
+  },
+  "main_data_figures": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "supplementary_figures": [
+    "S1",
+    "S2",
+    "S3"
+  ]
 }

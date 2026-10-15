@@ -28,7 +28,7 @@ GRAY = STYLE['gray']
 INK = STYLE['ink']
 PALE = STYLE['grid']
 CATS = {'undercoverage': RED, 'nominal_band': GRAY, 'overcoverage': BLUE}
-PAPERS = {'return_temperature_comparability':'EAB_FINAL_PORTAL_HANDOFF', 'combined_cycle_heat_rate':'ECM_FINAL_PORTAL_HANDOFF'}
+PAPERS = {'return_temperature_comparability':'return_temperature_comparability', 'combined_cycle_heat_rate':'combined_cycle_heat_rate'}
 SUPS = {'return_temperature_comparability':'Supplementary_Data', 'combined_cycle_heat_rate':'Supplementary_Data'}
 
 def digest(path):

@@ -1,6 +1,6 @@
 # Return temperature comparability
 
-Release version: 1.0.2.
+Release version: 1.0.3.
 
 This package contains the derived results, source values and implementation
 for evaluating seasonal return-temperature records and between-system
@@ -32,7 +32,12 @@ python3 -B validation/verify_release_interfaces.py
 python3 -B validation/verify_supporting_tables.py
 ```
 
-In Figures 3 and 5, AAU diamonds denote single-system estimates. Solid whiskers
+The main data figures cover comparison MAE (Figure 2), strict ordering reversals
+(Figure 3), individual-record duration profiles (Figure 4), and seasonal reference
+targets (Figure 5). Supplementary Figure S3 contains the short-minus-90-day
+contrasts. Figures S1 and S2 retain their six diagnostic pages.
+
+In Supplementary Figure S3 and Figure 5, AAU diamonds denote single-system estimates. Solid whiskers
 denote confidence intervals and dashed whiskers denote two-system descriptive
 ranges. Figure source values and dictionaries accompany the plotting code.
 

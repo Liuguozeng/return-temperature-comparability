@@ -49,6 +49,7 @@ def main():
     invoke(root / 'draw_current_figures.py', ['--package-root', root, '--output', retained])
     newer = a.output / 'comparison'
     invoke(root / 'comparability/render_comparability.py', ['figures', '--results', root / 'comparability/results', '--output', newer])
+    invoke(root / 'comparability/render_ordering.py', ['--results', root / 'comparability/results', '--output', newer])
     old_main = 5
     outputs = []
     for path in newer.glob('*'):
@@ -61,6 +62,8 @@ def main():
         outputs.append(name)
     if not any(n.startswith('Figure_2.') for n in outputs):
         raise ValueError('New core Figure 2 was not generated')
+    if not any(n.startswith('Figure_3.') for n in outputs):
+        raise ValueError('Strict-reversal Figure 3 was not generated')
     (a.output / 'REPRODUCTION_RECEIPT.json').write_text(json.dumps({
         'identity': identity, 'core_outputs': outputs, 'retained_directory': 'retained',
         'raw_replay': 'NOT_EXECUTED', 'model_fits': 0}, indent=2) + '\n')
