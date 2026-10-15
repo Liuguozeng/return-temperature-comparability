@@ -443,7 +443,7 @@ def run_tests(results, output):
     require(result.wasSuccessful(), 'Unit/negative tests failed')
 
 def main():
-    parser = argparse.ArgumentParser(description='Presentation-only renderer; original Figure 5 displays as Figure 2.')
+    parser = argparse.ArgumentParser(description='Render paired return-temperature comparisons and supplementary diagnostics.')
     commands = parser.add_subparsers(dest='command', required=True)
     for name in ['figures', 'test']:
         command = commands.add_parser(name)

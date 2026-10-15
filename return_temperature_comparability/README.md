@@ -1,6 +1,6 @@
 # Return temperature comparability
 
-Release version: 1.0.1.
+Release version: 1.0.2.
 
 This package contains the derived results, source values and implementation
 for evaluating seasonal return-temperature records and between-system
