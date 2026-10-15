@@ -16,8 +16,8 @@ CAPTIONS = {
            'and exact XAI4HEAT pair-season comparisons. Rows show 7, 14, 30, 60 and 90 days; '
            'columns separate median and heat-weighted endpoints. Blue denotes synchronous and '
            'pink asynchronous sampling. Each ECDF gives equal weight to its pair-season values. '
-           'Stratum boxes show the median, interquartile range and full observed range; positive '
-           'reference-contrast quartiles are fixed across durations and designs, with zero contrasts '
+           'Stratum boxes show the median, interquartile range and full observed range; nonzero absolute reference '
+           'contrast quartiles are fixed across durations and designs, with zero contrasts '
            'separate. XAI4HEAT connectors join the two values of the same pair-season at its exact '
            'reference contrast. The 41,110 PreDist and 140 XAI4HEAT source rows, including 160 '
            'PreDist zero-reference rows, are retained. Reused systems, pairs and seasons form '
@@ -74,7 +74,7 @@ def layout(plt, provider, metric, view):
     fig, axes = plt.subplots(5, 2, figsize=(178/25.4, 185/25.4))
     fig.subplots_adjust(left=.12, right=.98, bottom=.12, top=.85, hspace=.42, wspace=.25)
     name = 'Comparison error' if metric == 'error' else 'Strict ordering reversals'
-    subtitle = {'ecdf': 'Empirical distributions', 'strata': 'Reference-contrast strata',
+    subtitle = {'ecdf': 'Empirical distributions', 'strata': 'Absolute reference-gap strata',
                 'paired': 'Exact pair-season comparisons'}[view]
     fig.text(.12, .97, provider+' | '+name, size=11, weight='bold', va='top')
     fig.text(.12, .93, subtitle, size=8.5, va='top')
@@ -184,7 +184,7 @@ def build(pairs, output, plt, save_figure):
                 'Pair-season contrast MAE (°C)' if metric == 'error' else 'Pair-season strict reversals (%)')
             fig.text(.01, .49, ylabel, rotation=90, size=8.5, va='center', ha='center')
             fig.text(.56, .067, xlabel, size=8.5, ha='center')
-            footer = ('Q1-Q4: positive reference contrasts; 0: zero reference contrast' if view == 'strata'
+            footer = ('Q1-Q4: nonzero absolute reference gaps; 0: zero gap' if view == 'strata'
                       else '4,111 pair-seasons per endpoint and duration' if provider == 'PreDist'
                       else '14 pair-seasons per endpoint and duration')
             if metric == 'reversal' and provider == 'PreDist':

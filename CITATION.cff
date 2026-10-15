@@ -4,8 +4,8 @@ message: Please cite this software when reusing the code or derived evidence.
 type: software
 title: Temporal alignment shapes return-temperature comparability between heating
   systems
-version: 1.0.3
-date-released: '2026-10-15'
+version: 1.0.4
+date-released: '2026-10-16'
 url: https://github.com/Liuguozeng/return-temperature-comparability
 repository-code: https://github.com/Liuguozeng/return-temperature-comparability
 authors:

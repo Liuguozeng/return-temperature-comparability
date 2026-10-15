@@ -5,7 +5,7 @@ Code and derived evidence for seasonal return-temperature records and paired hea
 ## Reproduce
 
 Clone this repository, then download `return_temperature_comparability_data.zip` from
-[release 1.0.3](https://github.com/Liuguozeng/return-temperature-comparability/releases/tag/v1.0.3) and extract it in the repository
+[release 1.0.4](https://github.com/Liuguozeng/return-temperature-comparability/releases/tag/v1.0.4) and extract it in the repository
 root. Its members complete the existing `return_temperature_comparability/` directory.
 
 ```bash
