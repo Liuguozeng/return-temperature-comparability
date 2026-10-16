@@ -147,13 +147,13 @@ class Builder:
         if followup is not None:
             if not self.selected or not self.selected.issubset({'combined_cycle_heat_rate:4','combined_cycle_heat_rate:5'}):
                 raise ValueError('Followup presentation requires an explicit combined_cycle_heat_rate:4/5 subset')
-            if fig4_variant!='A':raise ValueError('Followup preserves the accepted Fig.4 A organization')
+            if fig4_variant!='A':raise ValueError('Subsequent-year rendering requires figure-4 variant A')
             if 'combined_cycle_heat_rate:5' in self.selected and fig5_variant=='legacy':
-                raise ValueError('Choose parallel or followup_first; do not silently render the old Fig.5')
+                raise ValueError('Subsequent-year figure 5 requires parallel or followup_first')
         elif fig5_variant!='legacy' or emit_retrospective_si:
             raise ValueError('A hash-bound followup input manifest is required')
         if emit_retrospective_si and fig5_variant!='followup_first':
-            raise ValueError('The retrospective SI preview belongs to the followup-first option')
+            raise ValueError('Retrospective SI requires the followup_first figure-5 variant')
 
     def data(self,paper,name):
         if self.package_root is not None:
@@ -580,15 +580,8 @@ def main():
     p.add_argument('--package-root',type=Path,help='Package directory containing the declared source values and figure metadata')
     p.add_argument('--output-root',type=Path,required=True)
     p.add_argument('--figures',nargs='*',help='Optional subset of figure keys defined by the package figure metadata')
-    p.add_argument('--heat_rate-fig4-variant',choices=['A','B','C'],default='A')
-    p.add_argument('--followup-input-manifest',type=Path,help='Manifest identifying the primary and subsequent-year result inputs')
-    p.add_argument('--heat_rate-fig5-variant',choices=['legacy','parallel','followup_first'],default='legacy')
-    p.add_argument('--emit-retrospective-si',action='store_true')
-    args=p.parse_args();followup=None
-    if args.followup_input_manifest:
-        from followup_presentation import FollowupInputs
-        followup=FollowupInputs(args.followup_input_manifest)
-    configure_style();b=Builder(args.candidate,args.output_root,args.figures,args.heat_rate_fig4_variant,followup,args.heat_rate_fig5_variant,args.emit_retrospective_si,args.package_root);b.run()
+    args=p.parse_args()
+    configure_style();b=Builder(args.candidate,args.output_root,args.figures,package_root=args.package_root);b.run()
     args.output_root.mkdir(parents=True,exist_ok=True)
     (args.output_root/'BUILD_RECORD.json').write_text(json.dumps(b.records,indent=2)+'\n')
     print(json.dumps(b.records,indent=2))
