@@ -130,7 +130,7 @@ The exact source basename is `PAIR_SEASON_SUMMARY.csv`; the similarly suffixed
 date-disjoint file is a separate estimand and is not a diagnostic input. Figure S1
 uses comparison MAE; Figure S2 uses strict-reversal percentages. Each has
 an empirical-distribution page and a reference-contrast-stratum page for
-PreDist, followed by exact paired values for XAI4HEAT. Positive reference
+PreDist, followed by exact paired values for XAI4HEAT. Nonzero absolute reference-contrast
 quartiles are defined from unique pair-seasons and stay fixed across durations
 and designs; boxes show medians, quartiles and complete ranges. Blue
 `#2879AD` and pink `#C97E9C` identify synchronous and asynchronous designs.
