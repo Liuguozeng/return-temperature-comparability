@@ -282,8 +282,6 @@ class Builder:
         ax.set_xlabel('Short minus 90-day MAE (°C)')
         fig.legend(handles=[Patch(facecolor=BLUE,label='7 d minus 90 d'),Patch(facecolor=MID,label='14 d minus 90 d')],loc='upper right',bbox_to_anchor=(.985,.985),ncol=2,frameon=False)
         fig.text(.18,.085,'Whiskers: 95% CI; dashed: two-system range. AAU diamonds: no CI.',fontsize=8.2,color=INK)
-        fig.text(.18,.040,'Date-disjoint eligibility: ≥5 systems and ≥30 common-start instances;',fontsize=8.2,color=INK)
-        fig.text(.18,.014,'AAU and Empa/NEST do not meet this requirement.',fontsize=8.2,color=INK)
         self.export('return_temperature_comparability',4,fig,artists)
 
     def heat_rate_2(self):

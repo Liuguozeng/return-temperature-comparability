@@ -226,8 +226,6 @@ class Builder:
         ax.set_xlabel('Median-endpoint error contrast (°C)')
         fig.legend(handles=[Patch(facecolor=BLUE, label='7−90 days'), Patch(facecolor=MID, label='14−90 days')], loc='upper right', bbox_to_anchor=(0.985, 0.985), ncol=2, frameon=False)
         fig.text(0.18, 0.085, 'Bands: 95% CI; dashed: two-system range; AAU: estimate only.', fontsize=8.2, color=GRAY)
-        fig.text(0.18, 0.04, 'Date-disjoint eligibility: ≥5 systems and ≥30 common-start instances;', fontsize=8.2, color=GRAY)
-        fig.text(0.18, 0.014, 'AAU and Empa/NEST do not meet this requirement.', fontsize=8.2, color=GRAY)
         self.export('return_temperature_comparability', 4, fig, artists)
 
 if __name__ == '__main__':
